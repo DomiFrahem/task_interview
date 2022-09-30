@@ -31,7 +31,7 @@ $("#serial_number").change(function (e) {
 });
 
 $("#type").on("click", function (e) {
-  type_selected = types[e.target.value];
+  type_selected = types[$("#type")[0].selectedIndex];
 });
 
 $("#add").on("click", function (e) {

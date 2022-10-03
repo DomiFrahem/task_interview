@@ -37,21 +37,23 @@ $("#type").on("click", function (e) {
 $("#add").on("click", function (e) {
   remove_all_toast();
 
-  $.ajax({
-    method: "POST",
-    url: "core/add.php",
-    data: {
-      type: type_selected,
-      serial_number: serial_number,
-    },
-    success: function (data) {
-      var json = JSON.parse(data);
-      show_no_match(json.no_match);
-      show_good_number_add(json.good);
-      show_dublicate(json.dublicate);
-    },
-    error: function (e) {},
-  });
+  if (serial_number.length != 0) {
+    $.ajax({
+      method: "POST",
+      url: "core/add.php",
+      data: {
+        type: type_selected,
+        serial_number: serial_number,
+      },
+      success: function (data) {
+        var json = JSON.parse(data);
+        show_no_match(json.no_match);
+        show_good_number_add(json.good);
+        show_dublicate(json.dublicate);
+      },
+      error: function (e) {},
+    });
+  }
 });
 
 function show_good_number_add(serial_number) {
